@@ -349,7 +349,7 @@ fun MovieDetailPage(incomingMovieObject: Movies, navController: NavController, m
                             incomingMovieObject.name, incomingMovieObject.image, incomingMovieObject.price,
                             incomingMovieObject.category, incomingMovieObject.rating, incomingMovieObject.year,
                             incomingMovieObject.director, incomingMovieObject.description,
-                            quantity, "omerfaruk_sekmen"
+                            quantity, "Enter your username here."
                         )
                         Toast.makeText(context,
                             "${incomingMovieObject.name} added to cart (${quantity} quantity)",

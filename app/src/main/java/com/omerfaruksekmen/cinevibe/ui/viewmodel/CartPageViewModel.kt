@@ -19,14 +19,14 @@ class CartPageViewModel @Inject constructor(var moviesRepository: MoviesReposito
     var isEmptyCart = MutableLiveData<Boolean>(true)
 
     init {
-        getAllMoviesInTheCart("omerfaruk_sekmen")
+        getAllMoviesInTheCart("Enter your username here.")
     }
 
     fun removeMovieFromCart(movieCartId: Int,
                         movieUsername: String){
         CoroutineScope(Dispatchers.Main).launch {
             moviesRepository.removeMovieFromCart(movieCartId, movieUsername)
-            getAllMoviesInTheCart("omerfaruk_sekmen")
+            getAllMoviesInTheCart("Enter your username here.")
         }
     }
 

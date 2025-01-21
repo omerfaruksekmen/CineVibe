@@ -93,7 +93,7 @@ fun SearchPage(navController: NavController, searchPageViewModel: SearchPageView
             ) {
                 Text(
                     text = "Use the search box above to search for movies.",
-                    color = Color.White,
+                    fontSize = 20.sp, lineHeight = 30.sp, color = Color.White,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(16.dp)
                 )

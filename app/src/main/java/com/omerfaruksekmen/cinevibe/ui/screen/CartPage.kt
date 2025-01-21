@@ -61,7 +61,7 @@ fun CartPage(navController: NavController, cartPageViewModel: CartPageViewModel)
     and the movie information in the cart for the specified username is retrieved as a result of
     the request sent to the web service. */
     LaunchedEffect(key1 = true) {
-        cartPageViewModel.getAllMoviesInTheCart("omerfaruk_sekmen")
+        cartPageViewModel.getAllMoviesInTheCart("Enter your username here.")
     }
 
     Scaffold(
@@ -113,7 +113,7 @@ fun CartPage(navController: NavController, cartPageViewModel: CartPageViewModel)
             ) {
                 Text(modifier = Modifier.padding(16.dp),
                     text = "Your cart is empty. Please visit the homepage to purchase new movies. :)",
-                    fontSize = 24.sp, lineHeight = 30.sp, color = Color.White,
+                    fontSize = 20.sp, lineHeight = 30.sp, color = Color.White,
                     textAlign = TextAlign.Center)
             }
         } else {
@@ -198,7 +198,7 @@ fun CartPage(navController: NavController, cartPageViewModel: CartPageViewModel)
                                                         actionLabel = "YES"
                                                     )
                                                     if(snackbar == SnackbarResult.ActionPerformed){
-                                                        cartPageViewModel.removeMovieFromCart(cartMovie.cartId, "omerfaruk_sekmen")
+                                                        cartPageViewModel.removeMovieFromCart(cartMovie.cartId, "Enter your username here.")
                                                     }
                                                 }
                                             }

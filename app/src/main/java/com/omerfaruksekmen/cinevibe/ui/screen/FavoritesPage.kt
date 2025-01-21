@@ -70,79 +70,98 @@ fun FavoritesPage(navController: NavController, favoritesPageViewModel: Favorite
             )
         }
     ) { paddingValues ->
-        // Using the LazyColumn structure, the favorite movies fetched from the Room database are listed.
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxSize()
-                .background(Color(0xFF242A32))
-                .padding(paddingValues)
-        ) {
-            items(
-                count = favoritesList.value.count(),
-                itemContent = {
-                    val favoriteMovie = favoritesList.value[it]
-                    Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(8.dp),
-                        colors = CardDefaults.cardColors(
-                            containerColor = Color(0xFF3A3F47)
-                        )
-                    ) {
-                        Row(
+        if(favoritesList.value.isNullOrEmpty()){
+            // If the favorite list is empty, an informational message is displayed."
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0xFF242A32))
+                    .padding(paddingValues),
+                verticalArrangement = Arrangement.Center,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                Text(
+                    text = "The favorite list appears to be empty. To add favorites, please visit the movie detail pages.",
+                    fontSize = 20.sp, lineHeight = 30.sp, color = Color.White,
+                    textAlign = TextAlign.Center,
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        }else{
+            // Using the LazyColumn structure, the favorite movies fetched from the Room database are listed.
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(Color(0xFF242A32))
+                    .padding(paddingValues)
+            ) {
+                items(
+                    count = favoritesList.value.count(),
+                    itemContent = {
+                        val favoriteMovie = favoritesList.value[it]
+                        Card(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(8.dp),
-                            verticalAlignment = Alignment.CenterVertically
-                        ) {
-                            GlideImage(
-                                imageModel = "http://kasimadalan.pe.hu/movies/images/${favoriteMovie.image}",
-                                modifier = Modifier
-                                    .size(80.dp)
-                                    .clip(RoundedCornerShape(8.dp)),
-                                contentScale = ContentScale.Crop
+                            colors = CardDefaults.cardColors(
+                                containerColor = Color(0xFF3A3F47)
                             )
-                            
-                            Column(
+                        ) {
+                            Row(
                                 modifier = Modifier
-                                    .weight(1f)
-                                    .padding(start = 16.dp)
+                                    .fillMaxWidth()
+                                    .padding(8.dp),
+                                verticalAlignment = Alignment.CenterVertically
                             ) {
-                                Text(
-                                    text = favoriteMovie.name,
-                                    color = Color.White,
-                                    fontSize = 18.sp,
-                                    fontWeight = FontWeight.Bold
+                                GlideImage(
+                                    imageModel = "http://kasimadalan.pe.hu/movies/images/${favoriteMovie.image}",
+                                    modifier = Modifier
+                                        .size(80.dp)
+                                        .clip(RoundedCornerShape(8.dp)),
+                                    contentScale = ContentScale.Crop
                                 )
-                                
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    modifier = Modifier.padding(top = 4.dp)
+
+                                Column(
+                                    modifier = Modifier
+                                        .weight(1f)
+                                        .padding(start = 16.dp)
                                 ) {
-                                    Icon(
-                                        Icons.Default.Star,
-                                        contentDescription = "Rating",
-                                        tint = Color(0xFFFFD700),
-                                        modifier = Modifier.size(16.dp)
-                                    )
                                     Text(
-                                        text = "${favoriteMovie.rating}",
+                                        text = favoriteMovie.name,
                                         color = Color.White,
-                                        modifier = Modifier.padding(start = 4.dp)
+                                        fontSize = 18.sp,
+                                        fontWeight = FontWeight.Bold
+                                    )
+
+                                    Row(
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        modifier = Modifier.padding(top = 4.dp)
+                                    ) {
+                                        Icon(
+                                            Icons.Default.Star,
+                                            contentDescription = "Rating",
+                                            tint = Color(0xFFFFD700),
+                                            modifier = Modifier.size(16.dp)
+                                        )
+                                        Text(
+                                            text = "${favoriteMovie.rating}",
+                                            color = Color.White,
+                                            modifier = Modifier.padding(start = 4.dp)
+                                        )
+                                    }
+
+                                    Text(
+                                        text = "${favoriteMovie.year} | ${favoriteMovie.director}",
+                                        color = Color(0xFF92929D),
+                                        fontSize = 14.sp,
+                                        modifier = Modifier.padding(top = 4.dp)
                                     )
                                 }
-                                
-                                Text(
-                                    text = "${favoriteMovie.year} | ${favoriteMovie.director}",
-                                    color = Color(0xFF92929D),
-                                    fontSize = 14.sp,
-                                    modifier = Modifier.padding(top = 4.dp)
-                                )
                             }
                         }
                     }
-                }
-            )
+                )
+            }
         }
     }
 } 
