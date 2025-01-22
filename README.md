@@ -9,7 +9,7 @@
 
 <p align="center">
   CineVibe is a comprehensive movie application that uses modern architectural designs and the latest Android technologies.
-  It is developed with Jetpack Compose and built on the MVVM architecture. Web services (APIs) are integrated via Retrofit for internet-based operations. Additionally,
+  It is developed with Kotlin-Jetpack Compose and built on the MVVM architecture. Web services (APIs) are integrated via Retrofit for internet-based operations. Additionally,
   Room database is used for local-based operations.
 </p>
 
